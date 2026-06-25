@@ -23,7 +23,7 @@ def validate_fuel_consumption(method):
         else:
             result = method(self, value)  # Вычисляем расход.
             if result > self._current_fuel_level:
-                # Если топлива недостаточно, то ошибка.
+                # Если топлива недостаточно для путешествия, то ошибка.
                 print(
                     f'Ошибка: недостаточно топлива для поездки. '
                     f'Нужно {result} л, в наличии {self._current_fuel_level} л."'
@@ -32,11 +32,9 @@ def validate_fuel_consumption(method):
             else:
                 # Если все проверки пройдены, то вычитает расход из текущего
                 # уровня топлива и возвращает расход.
-                self._current_fuel_level = self._current_fuel_level - result
+                self._current_fuel_level -= result
         return result
     return wrapper
-    # Выполняет проверки (неотрицательность расстояния, достаточность топлива).
-    # Вычитает расход из текущего уровня топлива и возвращает его.
 
 
 class Vehicle:
